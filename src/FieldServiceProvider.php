@@ -5,6 +5,10 @@ namespace Mattsplat\Readmore;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
+
+
 
 class FieldServiceProvider extends ServiceProvider
 {
