@@ -16,8 +16,23 @@ class FieldServiceProvider extends ServiceProvider
     public function boot()
     {
         Nova::serving(function (ServingNova $event) {
-            Nova::script('readmore', __DIR__.'/../dist/js/field.js');
-            Nova::style('readmore', __DIR__.'/../dist/css/field.css');
+            Nova::script('readmore', __DIR__ . '/../dist/js/field.js');
+            Nova::style('readmore', __DIR__ . '/../dist/css/field.css');
+        });
+
+        Text::macro('readMore', function ($options = []) {
+            $request = resolve(NovaRequest::class);
+
+            if (
+                is_null($request->resourceId) &&
+                !$request->isCreateOrAttachRequest() &&
+                !$request->isUpdateOrUpdateAttachedRequest()) {
+
+                $this->withMeta(['options' => $options]);
+                $this->component = 'read-more';
+            }
+
+            return $this;
         });
     }
 
