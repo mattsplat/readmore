@@ -2,6 +2,7 @@
 
 namespace Mattsplat\Readmore;
 
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\ServiceProvider;
@@ -22,6 +23,11 @@ class FieldServiceProvider extends ServiceProvider
         Nova::serving(function (ServingNova $event) {
             Nova::script('readmore', __DIR__ . '/../dist/js/field.js');
             Nova::style('readmore', __DIR__ . '/../dist/css/field.css');
+        });
+
+        Textarea::macro('showOnIndex', function(){
+            $this->showOnIndex = true;
+            return $this;
         });
 
         Text::macro('readMore', function ($options = []) {
