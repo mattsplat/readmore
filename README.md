@@ -1,6 +1,13 @@
 # Text Read More
 
+
 Works by adding a macro to Laravel Nova `Text` which is extended by `TextArea` so it works for both.
+
+### Install
+
+```$xslt
+composer require mattsplat/readmore
+```
 
 ### Usage
 
