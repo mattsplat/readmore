@@ -13,24 +13,21 @@ composer require mattsplat/readmore
 
 ```$xslt
 Textarea::make('Notes')
-    ->onlyOnIndex()
-    ->readMore()
-    ->nullable()
-// Textarea will not show on 
-Textarea::make('Notes')
+    ->showOnIndex()
+    ->readMore(),
                 
 ```
 
 with options
 
 ```$xslt
-Textarea::make('Notes')->nullable(),
+
 Textarea::make('Notes')
-                ->onlyOnIndex()
-                ->readMore(['mask' => 'Look Here', 'max' => 5]),
+    ->showOnIndex()
+    ->readMore(['mask' => 'Look Here', 'max' => 5]),
 ```
 
-or
+or using Text
 
 ```$xslt
 
@@ -40,8 +37,8 @@ Text::make('Notes')->readMore(),
 
 
 #### Options
-- max - number of characters to display
-- mask - text displayed to show all text (this accepts raw html as well)
+- max - number of characters to display (default 20)
+- mask - text displayed to show all text (default ...)
 
 
 Use an icon instead of text 
