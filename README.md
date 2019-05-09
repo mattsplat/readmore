@@ -48,3 +48,7 @@ $icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" 
 
 Text::make('Notes')->readMore(['max' => 0, 'mask' => $icon]),
 ```
+
+#### Inspired by
+
+[Index TextArea](https://github.com/dillingham/nova-index-textarea) by [Brian Dillingham](https://novapackages.com/collaborators/dillingham)
