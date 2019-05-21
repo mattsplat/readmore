@@ -1,5 +1,6 @@
 # Text Read More
 
+For the index view adds the ability to shorten text/textarea or show all by clicking on the field.
 
 Works by adding a macro to Laravel Nova `Text` which is extended by `TextArea` so it works for both.
 
