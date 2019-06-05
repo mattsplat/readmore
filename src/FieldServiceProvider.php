@@ -35,12 +35,7 @@ class FieldServiceProvider extends ServiceProvider
         Text::macro('readMore', function ($options = []) {
             $request = resolve(NovaRequest::class);
 
-            if (
-                is_null($request->resourceId) &&
-                !$request->isCreateOrAttachRequest() &&
-                !$request->isUpdateOrUpdateAttachedRequest() &&
-                !preg_match('/creation-fields/', $request->url())
-            ) {
+            if (is_null($request->resourceId) && !preg_match('/creation-fields/', $request->url())) {
                 $this->withMeta(['options' => $options]);
                 $this->component = 'read-more';
             }
