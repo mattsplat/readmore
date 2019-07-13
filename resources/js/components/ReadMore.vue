@@ -66,11 +66,11 @@
 
 <style scoped>
     .read-more-mask {
-        color: #4099de;
+        color: var(--primary);
         font-weight: 800;
     }
     .read-more-mask:hover {
         cursor: pointer;
-        color: #6cb2eb;
+        color: var(--primary-dark);
     }
 </style>
