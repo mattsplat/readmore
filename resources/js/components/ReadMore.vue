@@ -58,6 +58,7 @@
 
         methods: {
             toggle() {
+                if(this.text.length <= this.max) return
                 this.showAll = !this.showAll
             }
         }

@@ -788,6 +788,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         toggle: function toggle() {
+            if (this.text.length <= this.max) return;
             this.showAll = !this.showAll;
         }
     }
