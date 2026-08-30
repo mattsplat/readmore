@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## 2.2.0 — 2026-08-30
+
+### Added
+
+- **Nova 5 support.** `laravel/nova` is now `^4.0 || ^5.0`; the field code and
+  compiled bundle are unchanged and work on both. On PHP 8.0 only Nova 4
+  resolves; PHP 8.1+ resolves either.
+
 ## 2.1.0 — 2026-08-30
 
 ### Added

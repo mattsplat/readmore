@@ -1,3 +1,10 @@
+# Upgrading to 2.2
+
+Nothing to do. 2.2 only widens the `laravel/nova` constraint to `^4.0 || ^5.0`;
+there are no code or API changes. `composer update mattsplat/readmore` is enough.
+
+---
+
 # Upgrading from 2.0 to 2.1
 
 No API changes — `ReadMore::make()` and its methods are unchanged. A few

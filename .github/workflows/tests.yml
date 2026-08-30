@@ -25,18 +25,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: ['8.1', '8.2', '8.3']
-        testbench: ['^8.24', '^9.0']
-        dependencies: [highest]
-        exclude:
-          - php: '8.1'
-            testbench: '^9.0'
         include:
-          - php: '8.1'
-            testbench: '^8.24'
-            dependencies: lowest
+          - { php: '8.1', nova: '^4.0', testbench: '^8.30', dependencies: lowest }
+          - { php: '8.2', nova: '^4.0', testbench: '^9.8', dependencies: highest }
+          - { php: '8.2', nova: '^5.0', testbench: '^9.8', dependencies: highest }
+          - { php: '8.3', nova: '^5.0', testbench: '^9.8', dependencies: highest }
 
-    name: PHP ${{ matrix.php }} / Testbench ${{ matrix.testbench }} / ${{ matrix.dependencies }}
+    name: PHP ${{ matrix.php }} / Nova ${{ matrix.nova }} / ${{ matrix.dependencies }}
 
     steps:
       - name: Checkout
@@ -59,8 +54,10 @@ jobs:
           composer config --auth http-basic.nova.laravel.com \
             "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_LICENSE_KEY }}"
 
-      - name: Select Testbench version
-        run: composer require "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update --dev
+      - name: Pin Nova and Testbench versions
+        run: |
+          composer require "laravel/nova:${{ matrix.nova }}" --no-interaction --no-update
+          composer require "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update --dev
 
       - name: Install dependencies
         uses: ramsey/composer-install@v4

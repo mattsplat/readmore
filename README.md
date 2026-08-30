@@ -13,14 +13,15 @@ normal textarea on create / update forms.
 
 > **Nova compatibility**
 >
-> | Package version | Nova     | PHP    |
-> |-----------------|----------|--------|
-> | `^2.0`          | `^4.0`   | `^8.0` |
-> | `^1.0`          | `1.x`    | `>=7.1`|
+> | Package version | Nova            | PHP     |
+> |-----------------|-----------------|---------|
+> | `^2.2`          | `4.x` &amp; `5.x` | `^8.0` |
+> | `^2.0`          | `4.x`           | `^8.0`  |
+> | `^1.0`          | `1.x`           | `>=7.1` |
 >
-> v2 is a rewrite for Nova 4 and **removes the `Text::readMore()` /
-> `Textarea::showOnIndex()` macros** in favour of a dedicated field. See
-> [UPGRADE.md](UPGRADE.md).
+> On PHP 8.0 you get Nova 4; PHP 8.1+ resolves Nova 4 or 5. v2 is a rewrite for
+> Nova 4+ and **removes the `Text::readMore()` / `Textarea::showOnIndex()`
+> macros** in favour of a dedicated field. See [UPGRADE.md](UPGRADE.md).
 
 ## Install
 
