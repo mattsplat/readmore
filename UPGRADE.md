@@ -1,3 +1,23 @@
+# Upgrading from 2.0 to 2.1
+
+No API changes — `ReadMore::make()` and its methods are unchanged. A few
+front-end behaviour changes to be aware of:
+
+- The reveal / collapse control is now a `<button>` (focusable, keyboard
+  operable) rather than a click handler on the whole paragraph. Only the
+  indicator is clickable now, not the body text.
+- Text is truncated on a word boundary instead of mid-word, so the visible
+  snippet may be a few characters shorter than `characters()`.
+- The default `mask` changed from `' ...'` to `'...'`; the component now adds
+  the leading space itself. If you passed a custom `mask()` you may want to drop
+  a leading space from it.
+- Newlines in the value are now preserved on the index / detail views.
+
+Rebuilding your own assets is not required — the package ships the compiled
+bundle.
+
+---
+
 # Upgrading from 1.x to 2.0
 
 Version 2.0 targets **Laravel Nova 4** and replaces the macro-based API with a
