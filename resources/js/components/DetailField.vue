@@ -6,6 +6,7 @@
         :text="String(field.value)"
         :characters="field.characters"
         :mask="field.mask"
+        :less-label="field.lessLabel"
       />
       <span v-else>&mdash;</span>
     </template>

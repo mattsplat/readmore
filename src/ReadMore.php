@@ -25,7 +25,6 @@ class ReadMore extends Field
      *
      * @param  string  $name
      * @param  string|callable|null  $attribute
-     * @param  callable|null  $resolveCallback
      * @return void
      */
     public function __construct($name, $attribute = null, ?callable $resolveCallback = null)
@@ -34,7 +33,8 @@ class ReadMore extends Field
 
         $this->withMeta([
             'characters' => 20,
-            'mask' => ' ...',
+            'mask' => '...',
+            'lessLabel' => 'Show less',
             'rows' => 5,
         ]);
     }
@@ -55,6 +55,14 @@ class ReadMore extends Field
     public function mask(string $mask): static
     {
         return $this->withMeta(['mask' => $mask]);
+    }
+
+    /**
+     * Set the label for the control that collapses the text again.
+     */
+    public function lessLabel(string $label): static
+    {
+        return $this->withMeta(['lessLabel' => $label]);
     }
 
     /**

@@ -1,10 +1,15 @@
 # Nova Read More Field
 
-[![tests](https://github.com/mattsplat/readmore/actions/workflows/tests.yml/badge.svg)](https://github.com/mattsplat/readmore/actions/workflows/tests.yml)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/mattsplat/readmore.svg?style=flat-square)](https://packagist.org/packages/mattsplat/readmore)
+[![Tests](https://img.shields.io/github/actions/workflow/status/mattsplat/readmore/tests.yml?branch=master&label=tests&style=flat-square)](https://github.com/mattsplat/readmore/actions/workflows/tests.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/mattsplat/readmore.svg?style=flat-square)](https://packagist.org/packages/mattsplat/readmore)
+[![License](https://img.shields.io/packagist/l/mattsplat/readmore.svg?style=flat-square)](LICENSE)
 
-A Laravel Nova field that shortens long text and reveals the rest when the field
-is clicked. Works on the index and detail views, and renders a normal textarea on
-create / update forms.
+A Laravel Nova field that shortens long text and reveals the rest on click.
+It truncates on the index and detail views (on a word boundary), and renders a
+normal textarea on create / update forms.
+
+![Read More field preview](art/preview.svg)
 
 > **Nova compatibility**
 >
@@ -42,9 +47,10 @@ ReadMore::make('Notes')->hideFromIndex(),
 
 ```php
 ReadMore::make('Notes')
-    ->characters(60)   // characters shown before truncating (default 20)
-    ->mask(' — more')  // the "read more" indicator (default ' ...')
-    ->rows(8),         // textarea rows on forms (default 5)
+    ->characters(60)         // characters shown before truncating (default 20)
+    ->mask('read more')      // the "reveal" indicator (default '...')
+    ->lessLabel('collapse')  // the "collapse" control label (default 'Show less')
+    ->rows(8),               // textarea rows on forms (default 5)
 ```
 
 `mask()` accepts HTML, so you can use an icon instead of text:
@@ -54,6 +60,9 @@ $icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" 
 
 ReadMore::make('Notes')->characters(0)->mask($icon),
 ```
+
+The reveal / collapse control is a real `<button>`: it is keyboard focusable,
+toggles with <kbd>Enter</kbd> / <kbd>Space</kbd>, and exposes `aria-expanded`.
 
 ## Development
 
@@ -66,20 +75,29 @@ npm run nova:install
 npm run prod
 ```
 
-The bundle externalises `Vue` and `LaravelNova`, so it is a small
-(~3 KB) file that relies on Nova's own runtime.
+The bundle externalises `Vue` and `LaravelNova`, so it is a small (~4 KB) file
+that relies on Nova's own runtime.
 
-### Tests
+### Quality checks
 
 ```bash
-composer install
-composer test
+composer install   # needs Nova credentials (see below)
+composer test      # PHPUnit
+composer lint      # Pint (code style)
+composer analyse   # PHPStan / Larastan
 ```
 
 `composer install` pulls `laravel/nova`, so you need Nova credentials
-configured (`composer config --auth http-basic.nova.laravel.com <email> <key>`).
-CI runs the same suite via `.github/workflows/tests.yml`, which needs the
-`NOVA_USERNAME` and `NOVA_LICENSE_KEY` repository secrets.
+configured:
+
+```bash
+composer config --auth http-basic.nova.laravel.com "you@example.com" "your-license-key"
+```
+
+CI runs the same suite via `.github/workflows`, which needs the `NOVA_USERNAME`
+and `NOVA_LICENSE_KEY` repository secrets.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for more.
 
 ## Credits
 

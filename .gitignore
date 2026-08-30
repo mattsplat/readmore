@@ -1,10 +1,14 @@
 /.idea
 /vendor
 /node_modules
+/build
 package-lock.json
 composer.phar
 composer.lock
 phpunit.xml
+phpstan.neon
 .phpunit.result.cache
+.phpunit.cache
+.pint.cache
 .DS_Store
 Thumbs.db

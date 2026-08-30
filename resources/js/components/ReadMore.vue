@@ -1,13 +1,17 @@
 <template>
-  <p
-    class="group"
-    :class="{ 'cursor-pointer': isTruncatable }"
-    @click="toggle"
-  >{{ visibleText }}<span
-      v-if="isTruncated"
-      class="font-bold text-primary-500 group-hover:text-primary-400"
-      v-html="mask"
-    /></p>
+  <p class="readmore whitespace-pre-line">
+    <span>{{ visibleText }}</span><button
+      v-if="isTruncatable"
+      type="button"
+      class="readmore__toggle ml-1 cursor-pointer align-baseline font-bold text-primary-500 hover:underline focus:outline-none focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
+      :aria-expanded="expanded ? 'true' : 'false'"
+      :aria-label="expanded ? lessLabel : moreLabel"
+      @click="toggle"
+    ><span
+        v-if="!expanded"
+        v-html="mask"
+      /><span v-else>{{ lessLabel }}</span></button>
+  </p>
 </template>
 
 <script>
@@ -25,7 +29,11 @@ export default {
     },
     mask: {
       type: String,
-      default: ' ...',
+      default: '...',
+    },
+    lessLabel: {
+      type: String,
+      default: 'Show less',
     },
   },
 
@@ -49,10 +57,23 @@ export default {
       return this.isTruncatable && !this.expanded
     },
 
+    moreLabel() {
+      return 'Show more'
+    },
+
     visibleText() {
-      return this.isTruncated
-        ? this.text.substring(0, this.characters)
-        : this.text
+      if (!this.isTruncated) {
+        return this.text
+      }
+
+      const slice = this.text.slice(0, this.characters)
+      const lastSpace = slice.lastIndexOf(' ')
+
+      // Prefer a word boundary, but fall back to a hard cut for a single
+      // very long word so something is always shown.
+      const cut = lastSpace > 0 ? slice.slice(0, lastSpace) : slice
+
+      return cut.replace(/\s+$/, '')
     },
   },
 

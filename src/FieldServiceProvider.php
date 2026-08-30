@@ -3,7 +3,6 @@
 namespace Mattsplat\Readmore;
 
 use Illuminate\Support\ServiceProvider;
-use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Nova;
 
 class FieldServiceProvider extends ServiceProvider
@@ -13,7 +12,7 @@ class FieldServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Nova::serving(function (ServingNova $event) {
+        Nova::serving(function () {
             Nova::script('readmore', __DIR__.'/../dist/js/field.js');
         });
     }

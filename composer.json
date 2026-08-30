@@ -9,17 +9,24 @@
         "read-more"
     ],
     "license": "MIT",
+    "homepage": "https://github.com/mattsplat/readmore",
     "authors": [
         {
             "name": "Matt Coleman",
             "email": "matthewjohncoleman@gmail.com"
         }
     ],
+    "support": {
+        "issues": "https://github.com/mattsplat/readmore/issues",
+        "source": "https://github.com/mattsplat/readmore"
+    },
     "require": {
         "php": "^8.0",
         "laravel/nova": "^4.0"
     },
     "require-dev": {
+        "larastan/larastan": "^2.9",
+        "laravel/pint": "^1.13",
         "orchestra/testbench": "^8.24 || ^9.0",
         "phpunit/phpunit": "^10.5"
     },
@@ -34,7 +41,10 @@
         }
     },
     "scripts": {
-        "test": "@php vendor/bin/phpunit"
+        "test": "@php vendor/bin/phpunit",
+        "analyse": "@php vendor/bin/phpstan analyse",
+        "lint": "@php vendor/bin/pint --test",
+        "format": "@php vendor/bin/pint"
     },
     "extra": {
         "laravel": {

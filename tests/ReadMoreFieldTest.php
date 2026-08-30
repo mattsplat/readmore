@@ -21,7 +21,8 @@ class ReadMoreFieldTest extends TestCase
         $meta = ReadMore::make('Notes')->meta();
 
         $this->assertSame(20, $meta['characters']);
-        $this->assertSame(' ...', $meta['mask']);
+        $this->assertSame('...', $meta['mask']);
+        $this->assertSame('Show less', $meta['lessLabel']);
         $this->assertSame(5, $meta['rows']);
     }
 
@@ -37,6 +38,11 @@ class ReadMoreFieldTest extends TestCase
         $this->assertSame('<b>x</b>', ReadMore::make('Notes')->mask('<b>x</b>')->meta()['mask']);
     }
 
+    public function test_less_label_is_configurable(): void
+    {
+        $this->assertSame('Collapse', ReadMore::make('Notes')->lessLabel('Collapse')->meta()['lessLabel']);
+    }
+
     public function test_rows_is_configurable_and_at_least_one(): void
     {
         $this->assertSame(8, ReadMore::make('Notes')->rows(8)->meta()['rows']);
@@ -48,11 +54,12 @@ class ReadMoreFieldTest extends TestCase
         $field = ReadMore::make('Notes')
             ->characters(30)
             ->mask('…')
+            ->lessLabel('less')
             ->rows(3);
 
         $this->assertInstanceOf(ReadMore::class, $field);
         $this->assertEquals(
-            ['characters' => 30, 'mask' => '…', 'rows' => 3],
+            ['characters' => 30, 'mask' => '…', 'lessLabel' => 'less', 'rows' => 3],
             $field->meta()
         );
     }

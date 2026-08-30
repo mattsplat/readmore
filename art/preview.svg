@@ -1,0 +1,23 @@
+<svg width="720" height="360" viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <rect width="720" height="360" rx="14" fill="#f8fafc"/>
+  <rect x="1" y="1" width="718" height="358" rx="13" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+
+  <text x="40" y="52" font-size="13" font-weight="600" letter-spacing="0.6" fill="#94a3b8">READ MORE FIELD</text>
+
+  <!-- Collapsed state -->
+  <g transform="translate(40, 84)">
+    <rect x="0" y="0" width="640" height="86" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <text x="20" y="30" font-size="12" font-weight="600" letter-spacing="0.5" fill="#94a3b8">BIO</text>
+    <text x="20" y="58" font-size="15" fill="#1e293b">The quick brown fox jumps over<tspan font-weight="700" fill="#4f46e5">&#160;&#8230;</tspan></text>
+    <text x="20" y="76" font-size="11" fill="#cbd5e1">collapsed &#183; click to expand</text>
+  </g>
+
+  <!-- Expanded state -->
+  <g transform="translate(40, 196)">
+    <rect x="0" y="0" width="640" height="120" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <text x="20" y="30" font-size="12" font-weight="600" letter-spacing="0.5" fill="#94a3b8">BIO</text>
+    <text x="20" y="58" font-size="15" fill="#1e293b">The quick brown fox jumps over the lazy dog while the</text>
+    <text x="20" y="80" font-size="15" fill="#1e293b">whole meadow watches in complete silence.<tspan font-weight="700" fill="#4f46e5">&#160;Show less</tspan></text>
+    <text x="20" y="104" font-size="11" fill="#cbd5e1">expanded</text>
+  </g>
+</svg>
