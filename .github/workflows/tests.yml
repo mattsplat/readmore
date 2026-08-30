@@ -1,10 +1,15 @@
+# PHPUnit + PHPStan both need `laravel/nova`, a paid private Composer package,
+# so this workflow does NOT run automatically. Run it on demand from the Actions
+# tab once these repository secrets are set:
+#   NOVA_USERNAME     – the email address on your Nova account
+#   NOVA_LICENSE_KEY  – your Nova license key
+#
+# Without a Nova license, run the suite locally instead: `composer test`,
+# `composer analyse` (see CONTRIBUTING.md).
 name: tests
 
 on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+  workflow_dispatch:
 
 concurrency:
   group: tests-${{ github.workflow }}-${{ github.ref }}
@@ -17,10 +22,6 @@ jobs:
   tests:
     runs-on: ubuntu-latest
 
-    # Nova is a paid, private Composer package. These repository secrets must be
-    # set for CI to install it:
-    #   NOVA_USERNAME     – the email address on your Nova account
-    #   NOVA_LICENSE_KEY  – your Nova license key
     strategy:
       fail-fast: false
       matrix:

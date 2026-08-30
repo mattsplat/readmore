@@ -5,8 +5,9 @@
 ### Added
 
 - MIT `LICENSE` file.
-- PHPUnit test suite (`orchestra/testbench`), Pint, and PHPStan / Larastan, run
-  in CI against PHP 8.1–8.3 (incl. a `prefer-lowest` run).
+- PHPUnit test suite (`orchestra/testbench`) and PHPStan / Larastan, plus a
+  Pint code-style check that runs in CI on every push. The Nova-dependent
+  `tests` workflow (PHP 8.1–8.3, incl. `prefer-lowest`) runs on demand.
 - Repo meta: `CONTRIBUTING.md`, `SECURITY.md`, issue / PR templates, Dependabot,
   `.editorconfig`, and a README preview image.
 - `->lessLabel()` to customise the collapse control's label.

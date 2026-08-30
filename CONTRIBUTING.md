@@ -16,6 +16,10 @@ composer install
 composer config --auth http-basic.nova.laravel.com "you@example.com" "your-license-key"
 ```
 
+No Nova license? Pint (`composer lint` / `composer format`) still works without
+one, and CI runs it on every push. A maintainer runs `composer test` /
+`composer analyse` before release.
+
 ## Working on the PHP side
 
 ```bash

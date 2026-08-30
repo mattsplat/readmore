@@ -1,7 +1,7 @@
 # Nova Read More Field
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mattsplat/readmore.svg?style=flat-square)](https://packagist.org/packages/mattsplat/readmore)
-[![Tests](https://img.shields.io/github/actions/workflow/status/mattsplat/readmore/tests.yml?branch=master&label=tests&style=flat-square)](https://github.com/mattsplat/readmore/actions/workflows/tests.yml)
+[![Code Style](https://img.shields.io/github/actions/workflow/status/mattsplat/readmore/code-style.yml?branch=master&label=code%20style&style=flat-square)](https://github.com/mattsplat/readmore/actions/workflows/code-style.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/mattsplat/readmore.svg?style=flat-square)](https://packagist.org/packages/mattsplat/readmore)
 [![License](https://img.shields.io/packagist/l/mattsplat/readmore.svg?style=flat-square)](LICENSE)
 
@@ -94,8 +94,10 @@ configured:
 composer config --auth http-basic.nova.laravel.com "you@example.com" "your-license-key"
 ```
 
-CI runs the same suite via `.github/workflows`, which needs the `NOVA_USERNAME`
-and `NOVA_LICENSE_KEY` repository secrets.
+`composer lint` (Pint) needs no license and runs in CI on every push. The
+`test` / `analyse` suite needs Nova, so it runs locally or on demand via the
+`tests` workflow (Actions tab) once `NOVA_USERNAME` / `NOVA_LICENSE_KEY` secrets
+are set.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for more.
 

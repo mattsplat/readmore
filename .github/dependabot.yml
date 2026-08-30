@@ -1,16 +1,10 @@
 version: 2
 updates:
+  # Composer is intentionally omitted: it can't resolve the private
+  # laravel/nova package without credentials.
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
       interval: weekly
     labels:
       - dependencies
-
-  - package-ecosystem: composer
-    directory: "/"
-    schedule:
-      interval: weekly
-    labels:
-      - dependencies
-    open-pull-requests-limit: 5
