@@ -56,13 +56,16 @@ ReadMore::make('Notes')->characters(0)->mask($icon),
 ## Development
 
 The `dist/` bundle is committed so the package works without a build step. To
-recompile it from `resources/js` you need a Nova application checkout (Nova's npm
-tooling is not on the public registry):
+recompile it from `resources/js`, run the build inside a Nova application
+checkout (Nova's mix tooling is not on the public npm registry):
 
 ```bash
 npm run nova:install
 npm run prod
 ```
+
+The bundle externalises `Vue` and `LaravelNova`, so it is a small
+(~3 KB) file that relies on Nova's own runtime.
 
 ## Credits
 
