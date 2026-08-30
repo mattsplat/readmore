@@ -1,5 +1,7 @@
 # Nova Read More Field
 
+[![tests](https://github.com/mattsplat/readmore/actions/workflows/tests.yml/badge.svg)](https://github.com/mattsplat/readmore/actions/workflows/tests.yml)
+
 A Laravel Nova field that shortens long text and reveals the rest when the field
 is clicked. Works on the index and detail views, and renders a normal textarea on
 create / update forms.
@@ -66,6 +68,18 @@ npm run prod
 
 The bundle externalises `Vue` and `LaravelNova`, so it is a small
 (~3 KB) file that relies on Nova's own runtime.
+
+### Tests
+
+```bash
+composer install
+composer test
+```
+
+`composer install` pulls `laravel/nova`, so you need Nova credentials
+configured (`composer config --auth http-basic.nova.laravel.com <email> <key>`).
+CI runs the same suite via `.github/workflows/tests.yml`, which needs the
+`NOVA_USERNAME` and `NOVA_LICENSE_KEY` repository secrets.
 
 ## Credits
 

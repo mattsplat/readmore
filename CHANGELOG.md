@@ -1,6 +1,14 @@
 # Changelog
 
-## 2.0.0 — unreleased
+## Unreleased
+
+### Added
+
+- MIT `LICENSE` file.
+- PHPUnit test suite (`orchestra/testbench`) and a GitHub Actions workflow that
+  runs it against PHP 8.1–8.3.
+
+## 2.0.0 — 2026-08-30
 
 ### Changed (breaking)
 
