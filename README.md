@@ -1,55 +1,73 @@
-# Text Read More
+# Nova Read More Field
 
-For the index view adds the ability to shorten text/textarea or show all by clicking on the field.
+A Laravel Nova field that shortens long text and reveals the rest when the field
+is clicked. Works on the index and detail views, and renders a normal textarea on
+create / update forms.
 
-Works by adding a macro to Laravel Nova `Text` which is extended by `TextArea` so it works for both.
+> **Nova compatibility**
+>
+> | Package version | Nova     | PHP    |
+> |-----------------|----------|--------|
+> | `^2.0`          | `^4.0`   | `^8.0` |
+> | `^1.0`          | `1.x`    | `>=7.1`|
+>
+> v2 is a rewrite for Nova 4 and **removes the `Text::readMore()` /
+> `Textarea::showOnIndex()` macros** in favour of a dedicated field. See
+> [UPGRADE.md](UPGRADE.md).
 
-### Install
+## Install
 
-```$xslt
+```bash
 composer require mattsplat/readmore
 ```
 
-### Usage with TextArea
+## Usage
 
-```$xslt
-Textarea::make('Notes')
-    ->showOnIndex()
-    ->readMore(),
-                
+```php
+use Mattsplat\Readmore\ReadMore;
+
+ReadMore::make('Notes'),
 ```
 
-with options
+By default the field shows on the index (unlike Nova's `Textarea`). Chain the
+usual Nova methods to change that:
 
-```$xslt
-
-Textarea::make('Notes')
-    ->showOnIndex()
-    ->readMore(['mask' => 'Look Here', 'max' => 5]),
+```php
+ReadMore::make('Notes')->hideFromIndex(),
 ```
 
-or using Text
+### Options
 
-```$xslt
-
-Text::make('Notes')->readMore(),
-
+```php
+ReadMore::make('Notes')
+    ->characters(60)   // characters shown before truncating (default 20)
+    ->mask(' — more')  // the "read more" indicator (default ' ...')
+    ->rows(8),         // textarea rows on forms (default 5)
 ```
 
+`mask()` accepts HTML, so you can use an icon instead of text:
 
-#### Options
-- max - number of characters to display (default 20)
-- mask - text displayed to show all text (default ...)
+```php
+$icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path d="M6 2h9a1 1 0 0 1 .7.3l4 4a1 1 0 0 1 .3.7v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2z"/></svg>';
 
-
-Use an icon instead of text 
-
-```$xslt
-$icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path class="heroicon-ui" d="M6 2h9a1 1 0 0 1 .7.3l4 4a1 1 0 0 1 .3.7v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2zm9 2.41V7h2.59L15 4.41zM18 9h-3a2 2 0 0 1-2-2V4H6v16h12V9zm-5 4h2a1 1 0 0 1 0 2h-2v2a1 1 0 0 1-2 0v-2H9a1 1 0 0 1 0-2h2v-2a1 1 0 0 1 2 0v2z"/></svg>';
-
-Text::make('Notes')->readMore(['max' => 0, 'mask' => $icon]),
+ReadMore::make('Notes')->characters(0)->mask($icon),
 ```
 
-#### Inspired by
+## Development
 
-[Index TextArea](https://github.com/dillingham/nova-index-textarea) by [Brian Dillingham](https://novapackages.com/collaborators/dillingham)
+The `dist/` bundle is committed so the package works without a build step. To
+recompile it from `resources/js`, run the build inside a Nova application
+checkout (Nova's mix tooling is not on the public npm registry):
+
+```bash
+npm run nova:install
+npm run prod
+```
+
+The bundle externalises `Vue` and `LaravelNova`, so it is a small
+(~3 KB) file that relies on Nova's own runtime.
+
+## Credits
+
+Inspired by [Index TextArea](https://github.com/dillingham/nova-index-textarea)
+by [Brian Dillingham](https://novapackages.com/collaborators/dillingham).

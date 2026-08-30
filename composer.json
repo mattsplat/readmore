@@ -1,13 +1,20 @@
 {
     "name": "mattsplat/readmore",
-    "description": "A Laravel Nova field to hide long text and show when clicked.",
+    "description": "A Laravel Nova field that hides long text and reveals it on click.",
     "keywords": [
         "laravel",
-        "nova"
+        "nova",
+        "field",
+        "textarea",
+        "read-more"
     ],
     "license": "MIT",
     "require": {
-        "php": ">=7.1.0"
+        "php": "^8.0",
+        "laravel/nova": "^4.0"
+    },
+    "require-dev": {
+        "laravel/nova-devtool": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -19,6 +26,9 @@
             "providers": [
                 "Mattsplat\\Readmore\\FieldServiceProvider"
             ]
+        },
+        "branch-alias": {
+            "dev-master": "2.x-dev"
         }
     },
     "config": {

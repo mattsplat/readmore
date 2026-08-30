@@ -1,77 +1,67 @@
 <template>
-    <div>
-        <p @click="toggle" v-bind:class="{ 'pt-3 pb-3': showAll}">
-            {{ message }}
-            <span
-                    v-if="!showAll"
-                    class="read-more-mask"
-            >
-                <span v-html="mask"></span>
-            </span>
-        </p>
-    </div>
-
+  <p
+    class="group"
+    :class="{ 'cursor-pointer': isTruncatable }"
+    @click="toggle"
+  >{{ visibleText }}<span
+      v-if="isTruncated"
+      class="font-bold text-primary-500 group-hover:text-primary-400"
+      v-html="mask"
+    /></p>
 </template>
 
 <script>
-    export default {
-        name: "read-more",
-        props: {
-            text: String,
-            max: {
-                type: Number,
-                default: function () {
-                    return 20
-                },
-            },
-            mask: {
-                type: String,
-                default: function () {
-                    return ' ...'
-                },
-            },
-            options: Object,
-        },
-        data() {
-            return {
-                showAll: false,
+export default {
+  name: 'ReadMore',
 
-            }
+  props: {
+    text: {
+      type: String,
+      default: '',
+    },
+    characters: {
+      type: Number,
+      default: 20,
+    },
+    mask: {
+      type: String,
+      default: ' ...',
+    },
+  },
 
-        },
-        computed: {
-            message: function () {
+  data: () => ({
+    expanded: false,
+  }),
 
-                if(this.text.length <= this.max || this.showAll){
+  watch: {
+    // Collapse again if the underlying text changes (e.g. a reused row).
+    text() {
+      this.expanded = false
+    },
+  },
 
-                    this.showAll = true
-                    return this.text
+  computed: {
+    isTruncatable() {
+      return (this.text || '').length > this.characters
+    },
 
-                } else {
+    isTruncated() {
+      return this.isTruncatable && !this.expanded
+    },
 
-                    return this.text.substring(0, this.max)
+    visibleText() {
+      return this.isTruncated
+        ? this.text.substring(0, this.characters)
+        : this.text
+    },
+  },
 
-                }
-
-            }
-        },
-
-        methods: {
-            toggle() {
-                if(this.text.length <= this.max) return
-                this.showAll = !this.showAll
-            }
-        }
-    }
+  methods: {
+    toggle() {
+      if (this.isTruncatable) {
+        this.expanded = !this.expanded
+      }
+    },
+  },
+}
 </script>
-
-<style scoped>
-    .read-more-mask {
-        color: var(--primary);
-        font-weight: 800;
-    }
-    .read-more-mask:hover {
-        cursor: pointer;
-        color: var(--primary-dark);
-    }
-</style>
