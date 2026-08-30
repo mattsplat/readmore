@@ -20,7 +20,6 @@
         "laravel/nova": "^4.0"
     },
     "require-dev": {
-        "laravel/nova-devtool": "^1.0",
         "orchestra/testbench": "^8.24 || ^9.0",
         "phpunit/phpunit": "^10.5"
     },
